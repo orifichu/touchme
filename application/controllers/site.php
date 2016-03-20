@@ -10,10 +10,10 @@ class Site extends MY_Controller {
 		$this->folder                     = "front";
 
 		//Nombre del view correspondiente a Google Analytics
-		$this->google_analytics_view_name = 'google_analytics';
+		$this->google_analytics_view_name = '';
 
 		//Para cargar el código de Google Analytics por defecto en todas la vistas
-		$this->with_google_analytics      = true;
+		$this->with_google_analytics      = false;
     }
 
 	public function index()

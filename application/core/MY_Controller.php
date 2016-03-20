@@ -26,11 +26,18 @@ class MY_Controller extends CI_Controller
 
     protected function load_google_analytics_view( $view_name )
     {
-        $this->data['google_analytics_view'] = $this->load->view(
-            $this->get_pathname($view_name)
-            , NULL
-            , TRUE
-        );
+        //Cargar la vista correspondiente a Google Analytics siempre y cuando se desee hacerlo y siempre y cuando dicha vista tenga nombre
+        if ( $this->with_google_analytics && $this->google_analytics_view_name != '' ) {
+            $this->data['google_analytics_view'] = $this->load->view(
+                $this->get_pathname($view_name)
+                , NULL
+                , TRUE
+            );
+            return;
+        }
+
+        //Caso contrario se enviará la variable vacía
+        $this->data['google_analytics_view'] = '';
     }
 
     protected function load_language( $filename )
@@ -51,10 +58,8 @@ class MY_Controller extends CI_Controller
         //Cargar el archivo correspondiente al lenguaje del site. Las funciones relacionadas con el lenguaje serán obligatorias
         $this->load_language( $view_name );
 
-        //Cargar la vista correspondiente a Google Analytics siempre y cuando se desee hacerlo y siempre y cuando dicha vista tenga nombre
-        if ( $this->with_google_analytics && $this->google_analytics_view_name != '' ) {
-            $this->load_google_analytics_view( $this->google_analytics_view_name );
-        }
+        //Cargar la vista correspondiente a Google Analytics
+        $this->load_google_analytics_view( $this->google_analytics_view_name );
 
         //Cargar la vista 
         $this->load->view( $this->get_pathname($view_name), $this->data );
