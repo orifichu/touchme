@@ -18,6 +18,13 @@ class Site extends MY_Controller {
 
 	public function index()
 	{
+		//Obtener el footer y almacenarlo en una variable para ser llamado posteriormente
+		$this->data['footer'] = $this->load->view(
+            $this->get_pathname('footer')
+            , NULL
+            , TRUE
+        );
+
 		//cargar el view
 		$this->load_view( __FUNCTION__ );
 	}

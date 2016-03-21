@@ -6,5 +6,5 @@ $prefix = ''; //general prefix
 $section_prefix = 'meta_';
 
 $prefix = $section_prefix;
-$lang[$prefix . 'title']       = 'Título de la página';
+$lang[$prefix . 'title']       = 'Touch Me';
 $lang[$prefix . 'description'] = 'Descripción de la página';
